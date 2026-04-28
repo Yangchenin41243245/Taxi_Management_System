@@ -1,0 +1,17 @@
+# MariaDB 資料目錄（容器產生的本地資料，不納入版控）
+db_data/
+
+# 環境變數（含敏感帳密，未來使用時務必排除）
+.env
+.env.*
+
+# 本機筆記
+ip.txt
+
+# 編輯器
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
