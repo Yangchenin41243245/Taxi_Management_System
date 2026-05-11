@@ -118,6 +118,7 @@ $detail = $pdo->query(
     <a href="dashboard.php">行程總覽</a>
     <a href="assign.php">指派駕駛</a>
     <a href="report.php" class="active">帳務報表</a>
+    <a href="profile.php">帳號設定</a>
   </nav>
   <div class="logout"><a href="logout.php">登出</a></div>
 </aside>

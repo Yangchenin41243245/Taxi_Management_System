@@ -24,6 +24,8 @@ docker compose up -d
 docker compose down
 ```
 
+> **注意**：若本機已有其他 MySQL 服務占用 3306 port，MariaDB 容器改用 **3307** 對外，不影響系統運作。
+
 ---
 
 ## 在其他電腦上開啟
@@ -126,21 +128,24 @@ docker/
     │   ├── dashboard.php           ← 主頁（最近行程）
     │   ├── book.php                ← 行程預約
     │   ├── confirm.php             ← 結單確認
-    │   └── history.php             ← 歷史查詢
+    │   ├── history.php             ← 歷史查詢
+    │   └── profile.php             ← 帳號設定
     ├── driver/                     ← 駕駛端
     │   ├── register.php            ← 建立帳號
     │   ├── login.php               ← 登入
     │   ├── logout.php              ← 登出
     │   ├── dashboard.php           ← 主頁（行程概覽）
     │   ├── report.php              ← 回報里程與價格
-    │   └── revenue.php             ← 營收彙整
+    │   ├── revenue.php             ← 營收彙整
+    │   └── profile.php             ← 帳號設定
     └── admin/                      ← 管理端
         ├── register.php            ← 建立帳號
         ├── login.php               ← 登入
         ├── logout.php              ← 登出
         ├── dashboard.php           ← 所有行程清單
         ├── assign.php              ← 指派駕駛
-        └── report.php              ← 帳務報表
+        ├── report.php              ← 帳務報表
+        └── profile.php             ← 帳號設定
 ```
 
 ---
@@ -188,6 +193,7 @@ docker/
 | 行程預約（起點、終點、預定時間） | ✅ 完成 |
 | 結單確認（確認里程與價格） | ✅ 完成 |
 | 歷史查詢（含狀態篩選） | ✅ 完成 |
+| 帳號設定（修改姓名與密碼） | ✅ 完成 |
 
 ### B. 駕駛端
 
@@ -198,6 +204,7 @@ docker/
 | 查看指派行程（預約中／待確認／已完成） | ✅ 完成 |
 | 回報實際里程與最終價格 | ✅ 完成 |
 | 營收彙整（總行程數、累計金額） | ✅ 完成 |
+| 帳號設定（修改姓名與密碼） | ✅ 完成 |
 
 ### C. 平台管理端
 
@@ -208,6 +215,7 @@ docker/
 | 指派駕駛至行程 | ✅ 完成 |
 | 所有行程清單監控（含狀態篩選） | ✅ 完成 |
 | 帳務報表（乘客消費、駕駛營收、明細） | ✅ 完成 |
+| 帳號設定（修改帳號與密碼） | ✅ 完成 |
 
 ---
 
@@ -218,3 +226,4 @@ docker/
 - 介面設計直覺，單筆行程錄入與確認時間極短
 - 地點以**純文字欄位**紀錄，不使用 Google Maps API
 - 密碼以 **bcrypt** 雜湊儲存，不存明文
+- 修改帳號資訊須輸入目前密碼確認身分

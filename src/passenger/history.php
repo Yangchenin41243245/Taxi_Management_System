@@ -153,6 +153,7 @@ function statusColor(?string $s): string {
     <a href="dashboard.php">主頁</a>
     <a href="book.php">行程預約</a>
     <a href="history.php" class="active">歷史查詢</a>
+    <a href="profile.php">帳號設定</a>
   </nav>
   <div class="logout"><a href="logout.php">登出</a></div>
 </aside>
@@ -167,8 +168,8 @@ function statusColor(?string $s): string {
   <a href="history.php" class="active">
     <svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 1 1 2.05 4.95L6.64 18.36A9 9 0 1 0 13 3zm-1 5v5l4.25 2.53.77-1.28-3.52-2.09V8H12z"/></svg>歷史查詢
   </a>
-  <a href="logout.php">
-    <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8v-2H4V5z"/></svg>登出
+  <a href="profile.php">
+    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>帳號設定
   </a>
 </nav>
 

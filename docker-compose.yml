@@ -25,7 +25,7 @@ services:
       MYSQL_USER: mymy
       MYSQL_PASSWORD: myPassword
     ports:
-      - "3306:3306"
+      - "3307:3306"        # 改用 3307 避免與本機 MySQL 衝突
     volumes:
       - ./db_data:/var/lib/mysql
       #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
