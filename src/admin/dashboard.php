@@ -122,6 +122,32 @@ function statusColor(?string $s): string {
     .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: .78rem; font-weight: 600; color: #fff; }
     .text-muted { color: #9ca3af; }
     .empty { padding: 32px; text-align: center; color: #9ca3af; }
+
+    .bottom-nav { display: none; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { padding: 24px 16px 88px; }
+      .main h1 { font-size: 1.2rem; }
+      .stats { gap: 10px; }
+      .stat-card { min-width: calc(50% - 5px); padding: 12px 16px; }
+      .stat-card .num { font-size: 1.4rem; }
+      .card { overflow-x: auto; }
+      .filter-bar { gap: 6px; }
+
+      .bottom-nav {
+        display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+        background: #312e81; z-index: 100; border-top: 1px solid #3730a3;
+      }
+      .bottom-nav a {
+        flex: 1; display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 10px 4px; color: #a5b4fc;
+        text-decoration: none; font-size: .7rem; gap: 3px;
+      }
+      .bottom-nav a svg { width: 22px; height: 22px; fill: currentColor; }
+      .bottom-nav a.active, .bottom-nav a:hover { color: #818cf8; }
+    }
   </style>
 </head>
 <body>
@@ -136,6 +162,21 @@ function statusColor(?string $s): string {
   </nav>
   <div class="logout"><a href="logout.php">登出</a></div>
 </aside>
+
+<nav class="bottom-nav">
+  <a href="dashboard.php" class="active">
+    <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>行程總覽
+  </a>
+  <a href="assign.php">
+    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>指派駕駛
+  </a>
+  <a href="report.php">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>帳務報表
+  </a>
+  <a href="profile.php">
+    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>帳號設定
+  </a>
+</nav>
 
 <div class="main">
   <h1>行程總覽</h1>
