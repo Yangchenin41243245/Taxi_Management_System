@@ -112,6 +112,17 @@ CREATE TABLE Settlements (
 
 ---
 
+## 學校雲端空間部署
+
+學校為各組提供雲端資料夾，需符合以下兩點規定：
+
+1. **`index.php`**（已完成）：專案入口展示頁，呈現系統簡介、三個入口連結與行程流程說明
+2. **`Project_Name.txt`**（已完成）：內容為「三端簡易叫車紀錄管理系統」，學校系統自動抓取顯示
+
+上傳時將整個專案資料夾（`index.php`、`Project_Name.txt`、`src/`）上傳至學校分配的資料夾即可。
+
+---
+
 ## 專案目錄結構
 
 ```
@@ -119,6 +130,8 @@ docker/
 ├── .gitignore
 ├── docker-compose.yml
 ├── Dockerfile
+├── index.php                       ← 專案入口展示頁（學校雲端空間用）
+├── Project_Name.txt                ← 專案名稱（學校系統自動抓取）
 └── src/
     ├── db.php                      ← 資料庫連線（共用）
     ├── passenger/                  ← 乘客端
