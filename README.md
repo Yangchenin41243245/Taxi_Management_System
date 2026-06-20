@@ -6,7 +6,7 @@
 
 - **適用對象**：乘客、接單司機、車隊管理人員
 - **技術架構**：PHP 8.2 + MariaDB 10.6 + Apache（Docker）
-- **本機開發**：`http://localhost:8080`
+- **本機開發**：`http://localhost:8080`（入口頁）或 `http://localhost:8080/src/passenger/register.php`
 - **資料庫管理**：phpMyAdmin `http://localhost:8082`（帳號：root／密碼：myPassword）
 
 ---
@@ -100,15 +100,16 @@ CREATE TABLE Settlements (
 
 | 端口 | 網址 |
 |------|------|
-| 乘客端 | `http://localhost:8080/passenger/register.php` |
-| 駕駛端 | `http://localhost:8080/driver/register.php` |
-| 管理端 | `http://localhost:8080/admin/register.php` |
+| 入口頁 | `http://localhost:8080` |
+| 乘客端 | `http://localhost:8080/src/passenger/register.php` |
+| 駕駛端 | `http://localhost:8080/src/driver/register.php` |
+| 管理端 | `http://localhost:8080/src/admin/register.php` |
 
 ### 同網段手機存取
 
 1. 查詢電腦 IP（Windows：執行 `ipconfig`，找無線網路的 IPv4）
 2. 手機與電腦連同一個 Wi-Fi 或熱點
-3. 手機瀏覽器輸入 `http://<電腦IP>:8080/passenger/register.php`
+3. 手機瀏覽器輸入 `http://<電腦IP>:8080/src/passenger/register.php`
 
 ---
 
