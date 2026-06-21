@@ -1,3 +1,49 @@
+<?php
+/* =====================================================================
+ *  三端簡易叫車紀錄管理系統 — 專案入口頁（index.php）
+ *  第十二組  資料庫：csieDBTeam12
+ * =====================================================================
+ *
+ *  ── 一、啟動方式 ────────────────────────────────────────────────
+ *    1. 開啟終端機，切換到專案根目錄（含 docker-compose.yml 的位置）
+ *    2. 執行：  docker compose up -d
+ *    3. 關閉：  docker compose down
+ *
+ *  ── 二、各服務網址 ──────────────────────────────────────────────
+ *    入口頁         http://localhost:8080
+ *    乘客端         http://localhost:8080/src/passenger/register.php
+ *    駕駛端         http://localhost:8080/src/driver/register.php
+ *    管理端         http://localhost:8080/src/admin/register.php
+ *    phpMyAdmin     http://localhost:8082
+ *    連線測試       http://localhost:8080/src/dbtest.php
+ *
+ *  ── 三、phpMyAdmin 登入帳密 ────────────────────────────────────
+ *    使用者名稱：  root
+ *    密碼：        myPassword
+ *    （設定於 docker-compose.yml 的 MYSQL_ROOT_PASSWORD）
+ *
+ *    PHP 程式連線用帳號（寫在 src/db.php）：
+ *    host = db-proj-db    db = csieDBTeam12
+ *    user = mymy          pass = myPassword
+ *
+ *  ── 四、資料庫自動建立 ──────────────────────────────────────────
+ *    docker-compose.yml 在「全新啟動」時會自動完成：
+ *      (1) MYSQL_DATABASE: csieDBTeam12  → 自動建立空資料庫
+ *      (2) 掛載 init.sql 至初始化目錄     → 自動執行建立 5 張資料表
+ *          ( Passengers / Drivers / Admins / Rides / Settlements )
+ *    因此首次啟動後「不需手動進 phpMyAdmin 跑 SQL」。
+ *
+ *    ⚠ 注意：上述自動初始化只在 db_data 資料夾為空（第一次）時生效。
+ *          若資料庫名稱或 root 密碼有更動，需先刪除 db_data 再重啟才會套用。
+ *
+ *  ── 五、檢查清單（部署後驗證） ──────────────────────────────────
+ *    □ http://localhost:8082 能以 root / myPassword 登入
+ *    □ 左側可見 csieDBTeam12 資料庫，內含 5 張資料表
+ *    □ http://localhost:8080/src/dbtest.php 顯示「✅ 成功連線」
+ *    □ 三端 register.php 皆可正常開啟並註冊
+ * =====================================================================
+ */
+?>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -94,6 +140,22 @@
       padding: 2px 8px; margin: 2px 4px 2px 0; font-size: .82rem;
     }
 
+    /* 部署說明 */
+    .info {
+      background: #fff; border-radius: 10px;
+      padding: 22px 28px; margin-bottom: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      font-size: .88rem; color: #475569; line-height: 1.9;
+    }
+    .info dl { margin: 0; }
+    .info dt { font-weight: 700; color: #334155; margin-top: 12px; }
+    .info dt:first-child { margin-top: 0; }
+    .info dd { margin: 2px 0 0; }
+    .info code {
+      background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 1px 6px; font-size: .85rem; color: #1e3a5f;
+    }
+
     footer {
       text-align: center; padding: 24px;
       font-size: .82rem; color: #94a3b8;
@@ -144,16 +206,22 @@
     <div class="step"><div class="badge">4</div><div>乘客確認里程與金額後結案 → <strong>已完成</strong>，計入駕駛營收</div></div>
   </div>
 
-  <!-- 技術架構 -->
-  <p class="section-title">技術架構</p>
-  <div class="tech">
-    <span>PHP 8.2</span>
-    <span>MariaDB 10.6</span>
-    <span>Apache</span>
-    <span>Docker</span>
-    <span>PDO</span>
-    <span>bcrypt 密碼雜湊</span>
-    <span>RWD 手機版</span>
+  <!-- 啟動與檢查說明 -->
+  <p class="section-title">啟動與檢查</p>
+  <div class="info">
+    <dl>
+      <dt>啟動指令</dt>
+      <dd>於專案根目錄執行 <code>docker compose up -d</code>（關閉用 <code>docker compose down</code>）</dd>
+
+      <dt>資料庫</dt>
+      <dd>名稱 <code>csieDBTeam12</code>；首次啟動時由 <code>docker-compose.yml</code> 自動建立資料庫並執行 <code>init.sql</code> 建好 5 張資料表，無需手動操作。</dd>
+
+      <dt>phpMyAdmin</dt>
+      <dd><code>http://localhost:8082</code> ｜ 帳號 <code>root</code> ／ 密碼 <code>myPassword</code></dd>
+
+      <dt>連線測試</dt>
+      <dd>開啟 <code>src/dbtest.php</code> 顯示「✅ 成功連線」即代表資料庫正常。</dd>
+    </dl>
   </div>
 
 </div>
