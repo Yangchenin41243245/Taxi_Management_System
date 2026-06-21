@@ -28,7 +28,8 @@ services:
       - "3307:3306"        # 改用 3307 避免與本機 MySQL 衝突
     volumes:
       - ./db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # 自動建立資料表（首次啟動時執行 init.sql）；如需手動匯入請保持註解
+      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - stock-network
 

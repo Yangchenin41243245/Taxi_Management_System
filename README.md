@@ -52,9 +52,11 @@ docker compose up -d
 
 **3. 建立資料庫結構**
 
-> 全新啟動時，MariaDB 會自動建立 `csieDBTeam12` 資料庫並執行 `init.sql` 建好所有資料表，
-> 一般情況下**不需手動操作**。若需手動建立，可前往 `http://localhost:8082`，
-> 以 root / myPassword 登入 phpMyAdmin，在 `csieDBTeam12` 資料庫執行以下 SQL：
+> 全新啟動時，MariaDB 會自動建立空的 `csieDBTeam12` 資料庫，但資料表需手動建立：
+> 前往 `http://localhost:8082`，以 root / myPassword 登入 phpMyAdmin，
+> 在 `csieDBTeam12` 資料庫**匯入或執行 `init.sql`**（或下方 SQL）：
+>
+> 若要改為自動建立資料表，可將 `docker-compose.yml` 中 `init.sql` 的掛載那行取消註解，刪除 `db_data` 後重啟。
 
 ```sql
 CREATE TABLE Passengers (

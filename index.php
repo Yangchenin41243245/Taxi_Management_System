@@ -26,15 +26,17 @@
  *    host = db-proj-db    db = csieDBTeam12
  *    user = mymy          pass = myPassword
  *
- *  ── 四、資料庫自動建立 ──────────────────────────────────────────
- *    docker-compose.yml 在「全新啟動」時會自動完成：
- *      (1) MYSQL_DATABASE: csieDBTeam12  → 自動建立空資料庫
- *      (2) 掛載 init.sql 至初始化目錄     → 自動執行建立 5 張資料表
- *          ( Passengers / Drivers / Admins / Rides / Settlements )
- *    因此首次啟動後「不需手動進 phpMyAdmin 跑 SQL」。
+ *  ── 四、資料庫建立 ──────────────────────────────────────────────
+ *    docker-compose.yml 在「全新啟動」時會自動建立空的 csieDBTeam12 資料庫
+ *    （MYSQL_DATABASE 設定），但資料表需手動建立：
+ *      → 進 phpMyAdmin，於 csieDBTeam12 資料庫匯入或執行 init.sql
+ *        （含 5 張表：Passengers / Drivers / Admins / Rides / Settlements）
  *
- *    ⚠ 注意：上述自動初始化只在 db_data 資料夾為空（第一次）時生效。
- *          若資料庫名稱或 root 密碼有更動，需先刪除 db_data 再重啟才會套用。
+ *    ※ 若要改為「自動建立資料表」，將 docker-compose.yml 中
+ *      init.sql 的掛載那行取消註解，並刪除 db_data 後重啟即可。
+ *
+ *    ⚠ 注意：MYSQL_DATABASE 與 root 密碼只在 db_data 為空（第一次）時生效，
+ *          若有更動，需先刪除 db_data 再重啟才會套用。
  *
  *  ── 五、檢查清單（部署後驗證） ──────────────────────────────────
  *    □ http://localhost:8082 能以 root / myPassword 登入
@@ -214,7 +216,7 @@
       <dd>於專案根目錄執行 <code>docker compose up -d</code>（關閉用 <code>docker compose down</code>）</dd>
 
       <dt>資料庫</dt>
-      <dd>名稱 <code>csieDBTeam12</code>；首次啟動時由 <code>docker-compose.yml</code> 自動建立資料庫並執行 <code>init.sql</code> 建好 5 張資料表，無需手動操作。</dd>
+      <dd>名稱 <code>csieDBTeam12</code>；首次啟動時自動建立空資料庫，資料表請於 phpMyAdmin 匯入或執行 <code>init.sql</code> 建立（5 張表）。</dd>
 
       <dt>phpMyAdmin</dt>
       <dd><code>http://localhost:8082</code> ｜ 帳號 <code>root</code> ／ 密碼 <code>myPassword</code></dd>
