@@ -1,8 +1,8 @@
 <?php
-$host     = 'db-db';
+$host     = 'db-proj-db';
 $user     = 'mymy';
 $password = 'myPassword';
-$database = 'my-db';
+$database = 'csieDBTeam12';
 $charset  = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$database;charset=$charset";

@@ -52,8 +52,9 @@ docker compose up -d
 
 **3. 建立資料庫結構**
 
-開啟瀏覽器前往 `http://localhost:8082`，以 root / myPassword 登入 phpMyAdmin，
-在 `my-db` 資料庫執行以下 SQL：
+> 全新啟動時，MariaDB 會自動建立 `csieDBTeam12` 資料庫並執行 `init.sql` 建好所有資料表，
+> 一般情況下**不需手動操作**。若需手動建立，可前往 `http://localhost:8082`，
+> 以 root / myPassword 登入 phpMyAdmin，在 `csieDBTeam12` 資料庫執行以下 SQL：
 
 ```sql
 CREATE TABLE Passengers (
@@ -133,6 +134,7 @@ docker/
 ├── Dockerfile
 ├── index.php                       ← 專案入口展示頁（學校雲端空間用）
 ├── Project_Name.txt                ← 專案名稱（學校系統自動抓取）
+├── init.sql                        ← 資料庫初始化腳本（上傳學校供匯入）
 └── src/
     ├── db.php                      ← 資料庫連線（共用）
     ├── passenger/                  ← 乘客端
@@ -167,7 +169,7 @@ docker/
 
 ## 資料庫設計
 
-資料庫名稱：`my-db`
+資料庫名稱：`csieDBTeam12`
 
 | 資料表 | 主鍵 | 欄位 | 說明 |
 |--------|------|------|------|

@@ -10,25 +10,25 @@ services:
     volumes:
       - .:/var/www/html
     depends_on:
-      - db-db
+      - db-proj-db
     networks:
       - stock-network      #統一網路名稱
 
   # 2. MariaDB 資料庫
-  db-db:
+  db-proj-db:
     image: mariadb:10.6
     container_name: my_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: myPassword
-      MYSQL_DATABASE: my-db
+      MYSQL_DATABASE: csieDBTeam12
       MYSQL_USER: mymy
       MYSQL_PASSWORD: myPassword
     ports:
       - "3307:3306"        # 改用 3307 避免與本機 MySQL 衝突
     volumes:
       - ./db_data:/var/lib/mysql
-      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - stock-network
 
@@ -38,13 +38,13 @@ services:
     container_name: my_pma
     restart: always
     environment:
-      PMA_HOST: db-db      # 內部連線使用 service 名稱
+      PMA_HOST: db-proj-db # 內部連線使用 service 名稱
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: myPassword
     ports:
       - "8082:80"          # 修正：避免與 8080 衝突，改用 8082
     depends_on:
-      - db-db
+      - db-proj-db
     networks:
       - stock-network
 
